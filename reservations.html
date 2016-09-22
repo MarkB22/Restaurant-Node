@@ -13,7 +13,10 @@
 
 	<div class="container">
 		<div class="jumbotron">
-			<h1 class= "glyphicon glyphicon-fire">Whiteside's</h1>
+			<h1>
+			<span class= "glyphicon glyphicon-fire"></span>
+			 Whiteside's Café
+			</h1>
 			<h3>Make Your Reservation</h3>
 			<hr>
 			<a href="index.html"><button type="button" class="btn btn-primary btn-md"><span class="glyphicon glyphicon-cutlery"></span> View Tables</button></a>
@@ -54,13 +57,32 @@
 						</form>
 						<br>
 						<div class="text-left">
-							<button type="submit" class="btn btn-primary btn-md" id="addBtn"></span><span class="glyphicon glyphicon-cutlery"></span> Add Reservation</button>
+							<button type="submit" class="btn btn-success btn-md" id="addBtn"></span><span class="glyphicon glyphicon-plus"></span> Add Reservation</button>
 						</div>						
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
+<script type="text/javascript">
+		// Question: What does this code do?
+		$('#addBtn').on('click', function () {
+			var newReservation = {
+				Name: $('#name').val().trim(),
+				PhoneNumber: $('#phone').val().trim(),
+				Email: $('#email').val().trim(),
+				UniqueId: $('#uniqueId').val().trim()
+			};
 
+			// Question: What does this code do??
+			$.post('http://localhost:3000/api/new', newReservation)
+				.done(function (data) {
+					console.log(data);
+					alert('Adding Reservation...');
+				});
+
+			return false;
+		});
+	</script>
 </body>
 </html>
